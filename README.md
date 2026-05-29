@@ -8,33 +8,19 @@
 
 Исходники частей проекта и история коммитов на GitHub:
 
-| Часть      | Репозиторий                                                                                    | Коммиты                                                                                                                |
-| ---------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| Frontend   | [github.com/34elo/Techarrow](https://github.com/34elo/Techarrow)                               | [история коммитов](https://github.com/34elo/Techarrow/commits/main)                                                    |
-| Backend    | [github.com/mathusha2023/StrelkaBack](https://github.com/mathusha2023/StrelkaBack)             | [история коммитов](https://github.com/mathusha2023/StrelkaBack/commits/main)                                             |
-| Мобильное  | [github.com/Street02krutoy/techarrow_2026_app](https://github.com/Street02krutoy/techarrow_2026_app) | [история коммитов](https://github.com/Street02krutoy/techarrow_2026_app/commits/main)                                   |
+| Часть     | Репозиторий                                                                                            | Коммиты                                                                               |
+| --------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- |
+| Frontend  | [github.com/34elo/Techarrow](https://github.com/34elo/Techarrow)                                       | [история коммитов](https://github.com/34elo/Techarrow/commits/main)                   |
+| Backend   | [github.com/mathusha2023/StrelkaBack](https://github.com/mathusha2023/StrelkaBack)                     | [история коммитов](https://github.com/mathusha2023/StrelkaBack/commits/main)          |
+| Мобильное | [github.com/Street02krutoy/techarrow\_2026\_app](https://github.com/Street02krutoy/techarrow_2026_app) | [история коммитов](https://github.com/Street02krutoy/techarrow_2026_app/commits/main) |
 
 ## Демо
 
-| Площадка                       | Ссылка                                  |
-| ------------------------------ | --------------------------------------- |
-| Пользовательская панель (web)  | <https://tarr.ssrit.xyz>                |
-| Панель модерации (admin)       | <https://admin.tarr.ssrit.xyz>          |
-| Backend API + Swagger UI       | <https://api.tarr.ssrit.xyz/docs>       |
-| Мобильное приложение (APK)     | <https://disk.yandex.ru/d/hGIOuA_1WCC8Zg> |
-
-### Демо-аккаунты
-
-#### Для жюри
-
-Готовая учётка модератора для проверки админ-панели (<https://admin.tarr.ssrit.xyz>):
-
-| Роль      | Email           | Пароль     |
-| --------- | --------------- | ---------- |
-| Модератор | `moder@moder.ru` | `11111111` |
+| Площадка                   | Ссылка                                    |
+| -------------------------- | ----------------------------------------- |
+| Мобильное приложение (APK) | <https://disk.yandex.ru/d/hGIOuA_1WCC8Zg> |
 
 ## Структура
-
 
 | Каталог                               | Что это                                      | Стек                                                 |
 | ------------------------------------- | -------------------------------------------- | ---------------------------------------------------- |
@@ -43,17 +29,21 @@
 | `[frontend/admin/](./frontend/admin)` | Панель модерации (`:3001`)                   | Next.js 16 · React 19 · TanStack Query               |
 | `[mobile/](./mobile)`                 | Мобильное приложение для игроков             | Flutter · Chopper · `flutter_map` · `pedometer`      |
 
-
 Каждая часть — самостоятельный проект со своим репозиторием в `.git`, своим `Dockerfile` (где применимо) и своим README. Все клиенты ходят в один backend.
 
 ## Возможности
 
-- **Каталог квестов** с фильтрами по городу, сложности, длительности, поиском и геопоиском «рядом со мной».
-- **Прохождение** соло и в команде до 6 человек: чекпоинты на карте с кодовым словом или вариантами ответа, подсказки, таймер старта команды (5 с после готовности всех).
-- **Создание квестов** с маркерами на карте, обложкой в S3 и валидацией (≥3 чекпоинта). Каждый квест проходит модерацию.
-- **Команды** с 12-символьным инвайт-кодом и QR, кик участников, командный рейтинг.
-- **Рейтинги и достижения** в профиле, история прохождений, экспорт квеста в PDF.
-- **Изоляция ролей**: `user` ходит во `frontend/web` и `mobile`, `moderator` — только в `frontend/admin`. Авторитетный контроль ролей — на backend.
+* **Каталог квестов** с фильтрами по городу, сложности, длительности, поиском и геопоиском «рядом со мной».
+
+* **Прохождение** соло и в команде до 6 человек: чекпоинты на карте с кодовым словом или вариантами ответа, подсказки, таймер старта команды (5 с после готовности всех).
+
+* **Создание квестов** с маркерами на карте, обложкой в S3 и валидацией (≥3 чекпоинта). Каждый квест проходит модерацию.
+
+* **Команды** с 12-символьным инвайт-кодом и QR, кик участников, командный рейтинг.
+
+* **Рейтинги и достижения** в профиле, история прохождений, экспорт квеста в PDF.
+
+* **Изоляция ролей**: `user` ходит во `frontend/web` и `mobile`, `moderator` — только в `frontend/admin`. Авторитетный контроль ролей — на backend.
 
 ## Быстрый старт
 
@@ -84,23 +74,23 @@ flutter run
 
 JWT с access (15 мин) и refresh (7 дней) токенами. Refresh-токены хранятся в Redis и могут быть отозваны (logout). У пользователя ровно одна роль: `user` или `moderator`.
 
-- Регистрация обычного пользователя — через `/api/auth/register` (web и mobile).
-- Модераторов заводит backend (`/api/auth/register/moderator`) — фронтенд админки регистрацию не показывает.
-- Каждый клиент имеет собственное хранилище токенов с уникальными ключами, чтобы сессии web/admin/mobile не пересекались.
+* Регистрация обычного пользователя — через `/api/auth/register` (web и mobile).
+
+* Модераторов заводит backend (`/api/auth/register/moderator`) — фронтенд админки регистрацию не показывает.
+
+* Каждый клиент имеет собственное хранилище токенов с уникальными ключами, чтобы сессии web/admin/mobile не пересекались.
 
 ## Документация
 
-
-| Раздел                                         | Файл                                                                                                                                           |
-| ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| Backend — README, архитектура, окружение и API | `[backend/README.md](./backend/README.md)`, `[backend/docs/](./backend/docs)`                                                                  |
-| Frontend (общий) — обзор, запуск, контракт API | `[frontend/README.md](./frontend/README.md)`                                                                                                   |
-| Frontend web — пользовательская панель         | `[frontend/web/README.md](./frontend/web/README.md)`, `[frontend/web/docs/](./frontend/web/docs)`                                              |
-| Frontend admin — панель модерации              | `[frontend/admin/README.md](./frontend/admin/README.md)`, `[frontend/admin/docs/](./frontend/admin/docs)`                                      |
-| Mobile — Flutter-приложение                    | `[mobile/README.md](./mobile/README.md)`, `[mobile/docs/](./mobile/docs)`                                                                      |
-| Командные квесты — backend-флоу                | `[mobile/team-quests.md](./mobile/team-quests.md)`                                                                                             |
+| Раздел                                         | Файл                                                                                                                                                              |
+| ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Backend — README, архитектура, окружение и API | `[backend/README.md](./backend/README.md)`, `[backend/docs/](./backend/docs)`                                                                                     |
+| Frontend (общий) — обзор, запуск, контракт API | `[frontend/README.md](./frontend/README.md)`                                                                                                                      |
+| Frontend web — пользовательская панель         | `[frontend/web/README.md](./frontend/web/README.md)`, `[frontend/web/docs/](./frontend/web/docs)`                                                                 |
+| Frontend admin — панель модерации              | `[frontend/admin/README.md](./frontend/admin/README.md)`, `[frontend/admin/docs/](./frontend/admin/docs)`                                                         |
+| Mobile — Flutter-приложение                    | `[mobile/README.md](./mobile/README.md)`, `[mobile/docs/](./mobile/docs)`                                                                                         |
+| Командные квесты — backend-флоу                | `[mobile/team-quests.md](./mobile/team-quests.md)`                                                                                                                |
 | Контракт REST                                  | [Swagger UI](https://api.tarr.ssrit.xyz/docs), `[frontend/openapi.json](./frontend/openapi.json)`, `[mobile/openapi/swagger.json](./mobile/openapi/swagger.json)` |
-
 
 ## Карта зависимостей
 
@@ -125,4 +115,3 @@ JWT с access (15 мин) и refresh (7 дней) токенами. Refresh-то
 1. Перегенерируйте `openapi.json` из FastAPI.
 2. Обновите файл во `frontend/` и `mobile/openapi/`.
 3. В `mobile/` запустите `make gen-swag` — пересоберётся типизированный Chopper-клиент.
-
